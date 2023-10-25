@@ -10,13 +10,16 @@ import {
   Text,
   Title,
 } from "@tremor/react";
+import { useSelector } from "react-redux";
 
 export function UsersList() {
+  const users = useSelector((state) => state.users);
+
   return (
     <Card>
       <Title>
         Users
-        <Badge className="ml-2">{data.length}</Badge>
+        <Badge className="ml-2">{users.length}</Badge>
       </Title>
       <Table className="mt-5">
         <TableHead>
@@ -28,7 +31,7 @@ export function UsersList() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((item, i) => (
+          {users.map((item, i) => (
             <TableRow key={item.name}>
               <TableCell>{i + 1}</TableCell>
               <TableCell className="flex flex-row content-center gap-3">
