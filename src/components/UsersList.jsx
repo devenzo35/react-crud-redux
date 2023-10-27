@@ -10,10 +10,13 @@ import {
   Text,
   Title,
 } from "@tremor/react";
-import { useSelector } from "react-redux";
+import { useUserActions } from "../hooks/UseUsersActions";
+import { useAppSelector } from "../hooks/store";
 
 export function UsersList() {
-  const users = useSelector((state) => state.users);
+  const users = useAppSelector((state) => state.users);
+
+  const { removeUser } = useUserActions();
 
   return (
     <Card>
@@ -62,7 +65,7 @@ export function UsersList() {
                   </svg>
                 </button>
 
-                <button>
+                <button onClick={() => removeUser(item.id)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
