@@ -1,8 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, PayloadAction } from "@reduxjs/toolkit";
 import usersReducer from "./users/slice";
-import { useAppDispatch } from "../hooks/store";
 
-const persistanceMiddleware = (store) => (next) => (action) => {
+const persistanceMiddleware = (store) => (next) => (action: PayloadAction) => {
   next(action);
   localStorage.setItem(
     "__users__info__",

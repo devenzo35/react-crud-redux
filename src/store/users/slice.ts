@@ -1,18 +1,7 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { User, userId, userWithId } from "../../types/types";
 
-export type userId = number;
-
-interface User {
-  name: string;
-  email: string;
-  github: string;
-}
-
-export interface userWithId extends User {
-  id: userId;
-}
-
-const initialState: userWithId = (function () {
+const initialState: userWithId[] = (function () {
   /* localStorage.setItem(
     "__users__info__",
     JSON.stringify([
@@ -55,12 +44,17 @@ const usersSlice = createSlice({
   name: "usersSlice",
   initialState,
   reducers: {
+    addUser: (state, action: PayloadAction<User>) => {
+      const id = crypto.randomUUID();
+      console.log(...state);
+      state.push({ id, ...action.payload });
+    },
     deleteUser: (state, action: PayloadAction<userId>) => {
       const id = action.payload;
-      return state.filter((user) => user.id != id);
+      return state.filter((user: userWithId) => Number(user.id) != id);
     },
   },
 });
 
 export default usersSlice.reducer;
-export const { deleteUser } = usersSlice.actions;
+export const { deleteUser, addUser } = usersSlice.actions;

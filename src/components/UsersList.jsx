@@ -30,6 +30,7 @@ export function UsersList() {
             <TableHeaderCell>Id</TableHeaderCell>
             <TableHeaderCell>Name</TableHeaderCell>
             <TableHeaderCell>Email</TableHeaderCell>
+            <TableHeaderCell>Github</TableHeaderCell>
             <TableHeaderCell>Actions</TableHeaderCell>
           </TableRow>
         </TableHead>
@@ -40,12 +41,15 @@ export function UsersList() {
               <TableCell className="flex flex-row content-center gap-3">
                 <img
                   className="w-5 rounded-full"
-                  src={`https://unavatar.io/${item.name}`}
+                  src={`https://unavatar.io/${item.github}`}
                 ></img>
                 {item.name}
               </TableCell>
               <TableCell>
-                <Text>{item.Email}</Text>
+                <Text>{item.email}</Text>
+              </TableCell>
+              <TableCell>
+                <Text>{item.github}</Text>
               </TableCell>
               <TableCell className="flex gap-3">
                 <button>
