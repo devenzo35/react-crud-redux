@@ -6,25 +6,25 @@ const initialState: userWithId[] = (function () {
     "__users__info__",
     JSON.stringify([
       {
-        id: 1,
+        id: "1",
         name: "Enzo",
         email: "enzocuellar12@gmail.com",
         github: "devenzo35",
       },
       {
-        id: 2,
+        id: "2",
         name: "Julia",
         email: "Julia@gmail.com",
         github: "algo35",
       },
       {
-        id: 3,
+        id: "3",
         name: "Pedro",
         email: "Pedro@gmail.com",
         github: "apalabrado",
       },
       {
-        id: 4,
+        id: "4",
         name: "Juan",
         email: "Juan@gmail.com",
         github: "malditodev",
@@ -46,15 +46,19 @@ const usersSlice = createSlice({
   reducers: {
     addUser: (state, action: PayloadAction<User>) => {
       const id = crypto.randomUUID();
-      console.log(...state);
       state.push({ id, ...action.payload });
     },
     deleteUser: (state, action: PayloadAction<userId>) => {
       const id = action.payload;
-      return state.filter((user: userWithId) => Number(user.id) != id);
+      return state.filter((user: userWithId) => user.id != id.toString());
+    },
+
+    rollbackUser: (state, action: PayloadAction<userWithId>) => {
+      const user = state.some((user) => user.id === action.payload.id);
+      if (!user) return [...state, action.payload];
     },
   },
 });
 
 export default usersSlice.reducer;
-export const { deleteUser, addUser } = usersSlice.actions;
+export const { deleteUser, addUser, rollbackUser } = usersSlice.actions;

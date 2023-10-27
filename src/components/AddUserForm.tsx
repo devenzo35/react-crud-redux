@@ -1,6 +1,7 @@
 import { Button, Card, Title } from "@tremor/react";
 import { FormEvent } from "react";
 import { useUserActions } from "../hooks/UseUsersActions";
+import { toast, Toaster } from "sonner";
 
 const AddUserForm = () => {
   const { addNewUser } = useUserActions();
@@ -15,6 +16,7 @@ const AddUserForm = () => {
     const github = formData.get("github") as string;
     console.log(name, email, github);
     addNewUser({ name, email, github });
+    toast("You created a new user!");
     console.log(name, email, github);
   };
   return (
@@ -41,6 +43,7 @@ const AddUserForm = () => {
             name="github"
             placeholder="Insert user github"
           ></input>
+          <Toaster />
           <Button color="blue">Submit</Button>
         </form>
       </Card>

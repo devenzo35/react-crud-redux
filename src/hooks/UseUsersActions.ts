@@ -10,8 +10,14 @@ export const useUserActions = () => {
   };
 
   const removeUser = (id: userId) => {
+    console.log(id);
     dispatch(deleteUser(id));
   };
+
+  /*   const callbackDelete = (id: userId) => {
+    console.log(id);
+    dispatch(deleteUser(id));
+  }; */
 
   return { removeUser, addNewUser };
 };

@@ -35,9 +35,9 @@ export function UsersList() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users.map((item, i) => (
-            <TableRow key={item.name}>
-              <TableCell>{i + 1}</TableCell>
+          {users.map((item) => (
+            <TableRow key={item.id}>
+              <TableCell>{item.id}</TableCell>
               <TableCell className="flex flex-row content-center gap-3">
                 <img
                   className="w-5 rounded-full"
